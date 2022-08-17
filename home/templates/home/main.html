@@ -1,0 +1,218 @@
+{%load i18n staticfiles %}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="utf-8">
+    <meta name="Description" CONTENT="Location: Nairobi, Category: Properties, Levels:  Rental Buy">
+
+     <title>
+
+ {% block title_block %}
+
+ {% endblock %}
+ </title>
+
+    <meta name="robots" content="noindex,nofollow">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Chela+One|Coda+Caption:800|Fira+Sans|Gaegu|Hind|Knewave|Lato|Libre+Baskerville|Lora|Markazi+Text|Merienda|Merriweather|Montserrat|Noto+Sans|Noto+Serif|Open+Sans|Open+Sans+Condensed:300|Oswald|PT+Sans|PT+Sans+Narrow|Playfair+Display|Poppins|Raleway|Roboto|Roboto+Condensed|Roboto+Slab|Rubik|Slabo+27px|Source+Sans+Pro|Ubuntu" rel="stylesheet">
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{% static "home/css/materialize.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/style.css' %}" />
+{% endblock %}
+</head>
+<body>
+<nav class="black"  role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo orange-text">Pahala</a>
+      <ul class="right hide-on-med-and-down">
+          <li><a class="left-align white-text darken-4" style="font-family: 'Playfair Display', Regular ; font-size: 20px">List Your Propertie</a></li>
+          <li><a href="{% url 'home:allnews' %}" class="left-align white-text darken-4" style="font-family: 'Playfair Display', Regular ; font-size: 20px">Real Estate Blogs</a></li>
+          <li><a class="left-align white-text darken-4" style="font-family: 'Playfair Display', Regular ; font-size: 20px">Foreclosures</a></li>
+
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+{% load display_tags %}
+{% get_latest_displays%}
+
+       <div class="slider " style="margin-top: 0">
+     <ul class="slides col-6">
+ {% for display in latest_displays %}
+      <li>
+
+          {% if display.photo %}
+                                  <img src="{{ display.photo.url }}" alt="" class="  responsive-img">
+                   {% endif %}
+
+        <div class="caption center-align bottom">
+          <h3 class="" style="font-family: 'Playfair Display', Bold ; font-size: 60px; color: darkblue">{{ display.title }}</h3>
+
+        </div>
+      </li>
+         {% endfor %}
+     </ul>
+       </div>
+<h5 class="center" style=" margin-top: 1.5%; margin-bottom: 0.001%; font-family: 'Oswald',Bold; font-size: 40px; color: red">Recent Blogs</h5>
+ <div>
+  {% block content %}
+  {% endblock %}
+  </div>
+
+
+  <footer class="page-footer blue darken-4">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+            <i class="fa fa-map-marker" style="font-size:48px;color:red"></i>
+          <h5 class="white-text" style="font-family: 'Playfair Display', Bold Italic; font-size: 30px">Location</h5>
+          <p class="grey-text text-lighten-4" style="font-family: 'Playfair Display', Bold Italic; font-size: 20px">Along Kahawa Road</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text" style="font-family: 'Playfair Display', Bold Italic; font-size: 30px">Important Links</h5>
+          <ul>
+            <li><a class="white-text" style="font-family: 'Playfair Display', Bold Italic; font-size: 20px" href="#!">About Tuhame</a></li>
+            <li><a class="white-text" style="font-family: 'Playfair Display', Bold Italic; font-size: 20px" href="#!">Our Policy</a></li>
+            <li><a class="white-text" style="font-family: 'Playfair Display', Bold Italic; font-size: 20px" href="#!">Safety</a></li>
+            <li><a class="white-text" style="font-family: 'Playfair Display', Bold Italic; font-size: 20px" href="#!">Staff Login</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+
+          <h5 class="white-text" style="font-family: 'Playfair Display', Bold Italic; font-size: 30px">Connect With Us</h5>
+
+          <ul>
+
+              <li><a href="https://www.facebook.com/Tuhame"><i class="fa fa-facebook-square" style="font-size:36px; color : orangered"></i></a></li>
+              <li><a href="http://www.twitter.com/Tuhame"><i class="fa fa-twitter-square" style="font-size:36px; color: orangered"></i></a></li>
+              <li><a href="http://www.twitter.com/Tuhame"><i class="fa fa-youtube-square" style="font-size:36px; color: orangered"></i></a></li>
+              <li><a href="http://www.twitter.com/Tuhame"><i class="fa fa-google-plus-square" style="font-size:36px; color: orangered"></i></a></li>
+
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Copyright @<a class="brown-text text-lighten-3" href="http://materializecss.com">Tuhame 2019</a>
+      </div>
+    </div>
+  </footer>
+
+
+
+
+
+
+
+
+  <!--  Scripts-->
+  <script src="{% static 'home/js/jquery-3.2.1.js' %}"></script>
+  <script src="{% static 'home/js/materialize.js' %}"></script>
+  <script src="{% static 'home/js/init.js' %}"></script>
+
+<script>
+            $(document).ready(function () {
+                $('.slider').slider({full_width: true,
+                indicators:false, height: 850});
+            });
+        </script>
+<script>
+    $('.dropdown-trigger').dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrainWidth: false, // Does not change width of dropdown to that of the activator
+      hover: true, // Activate on hover
+      gutter: 0, // Spacing from edge
+      belowOrigin: true, // Displays dropdown below the button
+      alignment: 'left', // Displays dropdown with edge aligned to the left of button
+      stopPropagation: false, // Stops event propagation
+      coverTrigger: false
+    });
+</script>
+  <script>
+
+    $(".button-collapse").sideNav(
+        {menuWidth:,
+        CloseOnClick: true,
+        edge: 'right'
+        }
+    );
+    $('.collapsible').collapsible()
+        </script>
+  <script>
+      $(".dropdown-button").dropdown();
+  </script>
+<script>
+    $(document).ready('.dropdown-button').dropdown('open');
+
+</script>
+<script>
+     $(document).ready('.dropdown-button').dropdown('close');
+</script>
+<script>
+     $('.dropdown-button').dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrainWidth: false, // Does not change width of dropdown to that of the activator
+      hover: true, // Activate on hover
+      gutter: 0, // Spacing from edge
+      belowOrigin: true, // Displays dropdown below the button
+      alignment: 'left', // Displays dropdown with edge aligned to the left of button
+      stopPropagation: false // Stops event propagation
+    }
+  );
+</script>
+
+<script>
+    $( document ).ready(function(){})
+</script>
+<script>
+      $(".button-collapse").sideNav();
+</script>
+  <script>
+     $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+</script>
+<script>
+     $('.collapsible').collapsible({
+    accordion: false, // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+   // onOpen: function(el) { alert('Open'); }, // Callback for Collapsible open
+   // onClose: function(el) { alert('Closed'); } // Callback for Collapsible close
+  });
+</script>
+
+  <script>
+       $(document).ready(function(){
+    $('.carousel').carousel({
+         full_width: false,
+        indicators : true
+
+
+    });
+     });
+  </script>
+  <script>
+ $('.carousel.carousel-slider').carousel({
+    fullWidth: false,
+    indicators: true
+  });
+  </script>
+
+    </div>
+
+  </body>
+</html>

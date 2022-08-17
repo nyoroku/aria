@@ -1,0 +1,61 @@
+{% extends "clothes/main.html" %}
+{% block title %}
+{% if q %}
+Edit Product "{{ object.name }}"
+{% else %}
+Add new Product
+{% endif %}
+{% endblock %}
+{% block content %}
+<h1 style="text-align: center">
+{% if object %}
+Edit Product "{{ object.name }}"
+{% else %}
+Add New Product
+{% endif %}
+</h1>
+<div class="module">
+
+<form action="." method="post" id="" data-models-url="#" novalidate enctype="multipart/form-data">
+    <div class="grid-container">
+        <h2>Product info</h2>
+      <table style="background-color: grey">
+          {{ form.media }}
+          {{ form.media.js }}
+{{ form.as_table }}
+      </table>
+        <h5> Add Photos(At Least 6)</h5>
+
+
+    <table>
+{{ productimages_formset }}
+{{ productimages_formset.management_form }}
+    </table>
+        <h5> Add Product Features</h5>
+
+
+    <table>
+{{ feature_formset }}
+{{ feature_formset.management_form }}
+    </table>
+        <h5> Add Product Sizes Available</h5>
+
+
+    <table>
+{{ size_formset }}
+{{ size_formset.management_form }}
+    </table>
+          <button type="submit" class="primary button expanded search-button">
+      Save Product
+    </button>
+
+
+    </div>
+{% csrf_token %}
+
+</form>
+
+</div>
+
+
+{% endblock %}

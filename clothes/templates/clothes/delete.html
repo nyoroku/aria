@@ -1,0 +1,14 @@
+{% extends "clothes/main.html" %}
+{% block title %}Delete product{% endblock %}
+{% block content %}
+    <div class="grid-container">
+<h1>Delete Product "{{ object.name }}"</h1>
+<div class="module">
+<form action="" method="post">
+{% csrf_token %}
+<p>Are you sure you want to delete "{{ object.name }}"?</p>
+<input type="submit" class="button" value="Confirm">
+</form>
+</div>
+    </div>
+{% endblock %}

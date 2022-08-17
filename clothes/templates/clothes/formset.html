@@ -1,0 +1,29 @@
+{% extends "clothes/main.html" %}
+{% block title %}
+Edit "{{ product.name }}"
+{% endblock %}
+{% block content %}
+<h1>Edit "{{ product.name }}"</h1>
+<div class="grid-container">
+<h2>Product Images</h2>
+
+<form action="." method="post" enctype="multipart/form-data">
+    <table>
+{{ formset }}
+{{ formset.management_form }}
+    </table>
+    <h5> Add Photos(At Least 6)</h5>
+
+
+    <table>
+{{ productimages_formset }}
+{{ productimages_formset.management_form }}
+    </table>
+{% csrf_token %}
+<input type="submit" class="button" value="Save Images">
+</form>
+
+
+
+</div>
+{% endblock %}

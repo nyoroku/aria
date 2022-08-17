@@ -1,0 +1,15 @@
+{% extends 'home/base.html' %}
+{% load staticfiles %}
+{% block title_block %}
+ {{ new.title }}
+ {% endblock %}
+{% block body_block %}
+{% block content %}
+<article>
+
+<h5 class="blue-text center">{{ new.title  }}</h5>
+    <pre class="center"> {{ new.body}}</pre>
+
+</article>
+{% endblock %}
+{% endblock %}

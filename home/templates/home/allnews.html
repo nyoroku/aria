@@ -1,0 +1,45 @@
+{% extends 'home/base.html' %}
+{% load staticfiles %}
+{% block title_block %}
+    We Raise Manpower
+    {% endblock %}
+{% block body_block %}
+
+{% block content %}
+<h5 class="center" style=" margin-top: 1.5%; margin-bottom: 0.001%; font-family: 'Oswald',Bold; font-size: 40px">ALL NEWS</h5>
+{% if news %}
+<div class="row">
+{% for new in news %}
+
+<div  class="container">
+    <div class="col s12 m4">
+      <div class="card grey lighten-2">
+        <div class="card-image">
+           {% if new.photo %}
+        <img class="img-responsive" src="{{ new.photo.url }}" alt="My image"/>
+     {% endif %}
+
+        </div>
+        <div class="card-content">
+            <span class="card-title red-text" style="font-family: 'Coda Caption', Extra-bold;font-size: 20px">{{ new.title }}</span>
+          <p style="font-family:'Libre Baskerville', Regular;"> {{ new.body|truncatewords:20 }}</p>
+        </div>
+        <div class="card-action red-text">
+          <a href="{{ new.get_absolute_url }}" class="red-text darken-5" style="font-family:'Coda Caption', bold; ">Read On<i class="fa fa-arrow-circle-right" style="font-size:17px"></i></a>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+{% endfor %}
+    </div>
+
+
+{% else %}
+<p>No news yet</p>
+{% endif %}
+{% endblock %}
+{% include "home/pagination.html" with page=news %}
+{% endblock %}

@@ -1,0 +1,136 @@
+{% extends 'clothes/main.html' %}
+{% load staticfiles %}
+{% block title_block %}
+
+    {% endblock %}
+
+
+{% block content %}
+
+
+
+<ul class="mobile-app-filter-menu" data-mobile-app-filter-menu>
+{% load type_tag %}
+    {% get_type  %}
+    {% for type in types %}
+        <li class="is-active"><a href="{{ type.get_absolute_url }}"><h5 style="font-family:'Oswald', bold; font-size: 20px; color: black; font-weight: bold">{{ type.name }}</h5></a></li>
+    {% endfor %}
+
+    <li><a href="{% url 'clothes:brands' %}"><h5 style="font-family:'Oswald', bold; font-size: 20px; color: black; font-weight: bold">Brands</h5></a></li>
+</ul>
+
+
+  <section style="background-color: #f8e9a1">
+  {% load edit_tag %}
+    {% get_edits %}
+<div class="fullscreen-image-slider">
+  <div class="orbit" role="region" aria-label="FullScreen Pictures" data-orbit>
+    <ul class="orbit-container">
+
+      <button class="orbit-previous">
+
+        <span class="show-for-sr">Previous Slide</span>
+        <span class="nav fa fa-chevron-left fa-3x"></span>
+      </button>
+
+      <button class="orbit-next">
+        <span class="show-for-sr">Next Slide</span>
+        <span class="nav fa fa-chevron-right fa-3x"></span>
+      </button>
+
+            {% for edit in edits %}
+      <li class="is-active orbit-slide">
+      {% if edit.picture %}
+        <img class="orbit-image" src="{{ edit.picture.url }}" alt="photo">
+          {% endif %}
+        <figcaption class="orbit-caption">
+          <h1 style=" margin-left:30px; font-family:'Oswald', bold; font-size: 50px; color: white; opacity: 2.5">{{ edit.name }}</h1>
+            <h5 style=" margin-left:30px; font-family:'Oswald', bold; font-size: 30px; color: darkred; opacity: 2.5"><a href="{{ edit.get_absolute_url }}" class="button secondary" >Shop This Edit</a></h5>
+        </figcaption>
+
+      </li>
+            {% endfor %}
+
+    </ul>
+  </div>
+  </div>
+
+    </section>
+    <section>
+    {% load category_tag %}
+    {% get_category %}
+   <ul class="list-group">
+  {% for category in categories %}
+      <li class="list-group-item"><a href="{{ category.get_absolute_url }}"> <h5 style="font-family:'Oswald', bold; font-size: 20px; color: black; font-weight: bold">{{ category.name  }} <i class=" fa fa-arrow-right fa-1x " style="color:#002C3E" aria-hidden="true"></i></h5></a> </li>
+  {% endfor %}
+</ul>
+
+
+    </section>
+
+     <section style="background-color: #f8e9a1">
+
+<div class="content">
+<div class="wording">
+    {% load shop_tag %}
+    {% get_shops %}
+<h5 style=" margin-left:25px; font-family:'Oswald', bold; font-size: 25px; color: black; font-weight: bold">Top Shops</h5>
+</div>
+<div class="grid-x grid-padding-x">
+    {% for shop in shops %}
+  <div class="cell large-2 small-6 medium-4">
+    <div class="featured-image-block column">
+     <a href="{{ shop.get_absolute_url }}">
+         {% if shop.picture %}
+    <img src="{{shop.picture.url}}">
+                   <p class="text-center featured-image-block-title">{{ shop.name }}</p>
+  {% endif %}
+
+      </a>
+    </div>
+  </div>
+    {% endfor %}
+</div>
+<div class="show-for-medium">
+    <h1 style=" margin-left:30px; font-family:'Oswald', bold; font-size: 20px; color: darkred; opacity: 2.5"><a href="#" style="color:darkred;">View All Shops <i class="fa fa-arrow-right " style="color:darkred" aria-hidden="true"></i></a> </h1>
+</div>
+<div class="show-for-small-only" style="text-align:center">
+<a href="#" class= "" style="font-family:'Oswald', bold; font-size: 20px; color: darkred">View All Shops <i class="fa fa-arrow-right " style="color:darkred" aria-hidden="true"></i> </a>
+</div>
+    </div>
+    </section>
+
+     <section style="background-color: white">
+
+<div class="content">
+<div class="wording">
+    {% load pick_tags %}
+    {% get_picks %}
+<h5 style=" margin-left:25px; font-family:'Oswald', bold; font-size: 25px; color: black; font-weight: bold">Top Picks For You</h5>
+</div>
+<div class="grid-x grid-padding-x">
+    {% for pick in picks %}
+  <div class="cell large-2 small-6 medium-4">
+    <div class="featured-image-block column">
+     <a href="{{ pick.get_absolute_url }}">
+         {% if pick.picture %}
+    <img src="{{pick.picture.url}}">
+                   <p class="text-center featured-image-block-title">{{ pick.name }}</p>
+  {% endif %}
+
+      </a>
+    </div>
+  </div>
+    {% endfor %}
+</div>
+<div class="show-for-medium">
+    <h1 style=" margin-left:30px; font-family:'Oswald', bold; font-size: 20px; color: darkred; opacity: 2.5"><a href="#" style="color:darkred;">View All Picks <i class="fa fa-arrow-right " style="color:darkred" aria-hidden="true"></i></a> </h1>
+</div>
+<div class="show-for-small-only" style="text-align:center">
+<a href="#" class= "" style="font-family:'Oswald', bold; font-size: 20px; color: darkred">View All Picks <i class="fa fa-arrow-right " style="color:darkred" aria-hidden="true"></i> </a>
+</div>
+    </div>
+    </section>
+{% endblock %}
+
+
